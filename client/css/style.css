@@ -1,5 +1,5 @@
 /**
- * OfficePro - Premium Design System
+ * Alex_Impressão - Premium Design System
  * Organized, Modular, and Highly Maintainable CSS.
  */
 
@@ -187,6 +187,14 @@ button {
     transition: var(--transition-base);
     font-weight: 500;
     margin-bottom: 0;
+}
+
+.brand-logo-image {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
 }
 
 .nav-link i {
@@ -1044,6 +1052,13 @@ button {
     margin-bottom: 16px;
 }
 
+.splash-logo {
+    width: 82px;
+    height: 82px;
+    margin-bottom: 12px;
+    border-radius: 20px;
+}
+
 .splash-title {
     font-family: 'Outfit', sans-serif;
     letter-spacing: -0.02em;
@@ -1289,6 +1304,11 @@ svg {
     .dashboard-user-avatar {
         width: 40px;
         height: 40px;
+    }
+
+    .brand-logo-image {
+        width: 34px;
+        height: 34px;
     }
 
     .page-subtitle {

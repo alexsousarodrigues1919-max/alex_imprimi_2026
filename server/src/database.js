@@ -138,7 +138,7 @@ function initializeTables() {
 
         db.run(`CREATE TABLE IF NOT EXISTS company_config (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT DEFAULT 'OfficePro Escritorio',
+            name TEXT DEFAULT 'Alex_Impressão',
             cnpj TEXT,
             logo TEXT,
             phone TEXT,
@@ -174,7 +174,7 @@ function initializeTables() {
 
         db.get(`SELECT COUNT(*) as count FROM company_config`, (err, row) => {
             if (!err && row && row.count === 0) {
-                db.run(`INSERT INTO company_config (name) VALUES ('OfficePro Escritorio')`);
+                db.run(`INSERT INTO company_config (name) VALUES ('Alex_Impressão')`);
             }
         });
 

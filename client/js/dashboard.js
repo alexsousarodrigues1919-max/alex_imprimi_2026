@@ -121,7 +121,7 @@ function fillHeaderUser() {
     if (userRole) userRole.innerText = user.role || '-';
 
     if (userAvatar) {
-        const initials = (user.name || 'Office Pro')
+        const initials = (user.name || 'Alex Impressão')
             .split(' ')
             .filter(Boolean)
             .slice(0, 2)

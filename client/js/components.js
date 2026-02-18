@@ -1,4 +1,4 @@
-const getTheme = () => localStorage.getItem('theme') || 'light';
+﻿const getTheme = () => localStorage.getItem('theme') || 'light';
 
 function setTheme(theme) {
     document.documentElement.setAttribute('data-theme', theme);
@@ -25,13 +25,12 @@ function showSplashScreen() {
     splash.className = 'splash-screen';
 
     splash.innerHTML = `
-        <div class="brand-icon splash-brand-icon"><i data-lucide="briefcase-business"></i></div>
-        <h2 class="splash-title">OfficePro</h2>
+        <img class="splash-logo" src="assets/logo-alex-impressao.svg" alt="Alex_Impressão">
+        <h2 class="splash-title">Alex_Impressão</h2>
         <p class="splash-subtitle">Carregando plataforma...</p>
     `;
 
     document.body.appendChild(splash);
-    if (typeof lucide !== 'undefined') lucide.createIcons();
 
     setTimeout(() => {
         splash.style.opacity = '0';
@@ -67,14 +66,19 @@ function injectSidebar() {
     const menu = [
         { href: 'dashboard.html', icon: 'layout-dashboard', label: 'Painel', key: 'dashboard' },
         { href: 'clients.html', icon: 'users', label: 'Clientes', key: 'clients' },
+        { href: 'conta-cliente.html', icon: 'contact', label: 'Conta Cliente', key: 'conta-cliente' },
+        { href: 'pdv.html', icon: 'shopping-cart', label: 'PDV', key: 'pdv' },
+        { href: 'produtos.html', icon: 'package', label: 'Produtos', key: 'produtos' },
         { href: 'financial.html', icon: 'banknote', label: 'Financeiro', key: 'financial' },
         { href: 'agenda.html', icon: 'calendar-days', label: 'Agenda', key: 'agenda' },
+        { href: 'horarios.html', icon: 'clock-3', label: 'Marcar Horários', key: 'horarios' },
         { href: 'projects.html', icon: 'folder-kanban', label: 'Projetos', key: 'projects' },
+        { href: 'planejamento.html', icon: 'list-checks', label: 'Planejamento', key: 'planejamento' },
         { href: 'services.html', icon: 'headset', label: 'Atendimento', key: 'services' },
         { href: 'professionals.html', icon: 'briefcase', label: 'Profissionais', key: 'professionals' },
-        { href: 'reports.html', icon: 'bar-chart-3', label: 'Relatorios', key: 'reports' },
-        { href: 'notifications.html', icon: 'bell', label: 'Notificacoes', key: 'notifications' },
-        { href: 'settings.html', icon: 'settings', label: 'Configuracoes', key: 'settings' },
+        { href: 'reports.html', icon: 'bar-chart-3', label: 'Relatórios', key: 'reports' },
+        { href: 'notifications.html', icon: 'bell', label: 'Notificações', key: 'notifications' },
+        { href: 'settings.html', icon: 'settings', label: 'Configurações', key: 'settings' },
     ];
 
     const links = menu
@@ -88,8 +92,8 @@ function injectSidebar() {
     sidebar.className = 'sidebar';
     sidebar.innerHTML = `
         <div class="brand">
-            <div class="brand-icon"><i data-lucide="briefcase-business"></i></div>
-            <span class="brand-name">OfficePro</span>
+            <img class="brand-logo-image" src="assets/logo-alex-impressao.svg" alt="Alex_Impressão">
+            <span class="brand-name">Alex_Impressão</span>
         </div>
         <nav class="flex-1">
             <ul class="nav-list">${links}</ul>
