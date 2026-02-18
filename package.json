@@ -3,7 +3,11 @@
   "private": true,
   "version": "1.0.0",
   "description": "Root package for Render deployment",
+  "engines": {
+    "node": "20.x"
+  },
   "scripts": {
+    "postinstall": "npm --prefix server ci --omit=dev",
     "start": "npm --prefix server run start",
     "dev": "npm --prefix server run dev",
     "check": "npm --prefix server run check"
