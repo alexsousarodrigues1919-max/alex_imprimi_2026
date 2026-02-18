@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <section class="dashboard-menu-select-wrap mb-4">
+        <label class="form-label dashboard-menu-select-label" for="dashboardMenuSelect">Menu rapido</label>
+        <select class="form-input dashboard-menu-select" id="dashboardMenuSelect">
+            <option value="">Selecione uma tela...</option>
+            <option value="clients.html">Clientes</option>
+            <option value="financial.html">Financeiro</option>
+            <option value="agenda.html">Agenda</option>
+            <option value="projects.html">Projetos</option>
+            <option value="services.html">Atendimento</option>
+            <option value="professionals.html">Profissionais</option>
+            <option value="reports.html">Relatorios</option>
+            <option value="notifications.html">Notificacoes</option>
+            <option value="settings.html">Configuracoes</option>
+        </select>
+    </section>
+
+    <header class="header">
+        <div>
+            <h1 class="page-title">Painel do Escritorio</h1>
+            <p class="page-subtitle" id="dashboardDate">Carregando data...</p>
+        </div>
+        <div class="user-nav flex items-center gap-2">
+            <button class="btn btn-outline" id="refreshDashboardBtn">
+                <i data-lucide="refresh-cw"></i> Atualizar
+            </button>
+            <div class="user-info text-right">
+                <div class="user-name dashboard-user-name" id="userName">Carregando...</div>
+                <div class="user-role text-muted dashboard-user-role" id="userRole">-</div>
+            </div>
+            <div class="btn-primary dashboard-user-avatar" id="userAvatar">OP</div>
+        </div>
+    </header>
+
+    <section class="stats-grid">
+        <article class="glass-card fade-in">
+            <div class="stat-card-header">
+                <span class="text-muted dashboard-stat-label">Total de Clientes</span>
+                <i data-lucide="users" class="stat-card-icon stat-icon-primary"></i>
+            </div>
+            <div class="stats-value" id="totalClients">--</div>
+            <small class="text-muted">Base ativa cadastrada</small>
+        </article>
+
+        <article class="glass-card fade-in">
+            <div class="stat-card-header">
+                <span class="text-muted dashboard-stat-label">Receita no Mes</span>
+                <i data-lucide="trending-up" class="stat-card-icon stat-icon-success"></i>
+            </div>
+            <div class="stats-value" id="monthlyRevenue">R$ --</div>
+            <small class="text-muted">Entradas confirmadas</small>
+        </article>
+
+        <article class="glass-card fade-in">
+            <div class="stat-card-header">
+                <span class="text-muted dashboard-stat-label">Reunioes Agendadas</span>
+                <i data-lucide="clock" class="stat-card-icon stat-icon-warning"></i>
+            </div>
+            <div class="stats-value" id="meetingsToday">--</div>
+            <small class="text-muted" id="nextMeetingHint">Sem proxima reuniao</small>
+        </article>
+
+        <article class="glass-card fade-in">
+            <div class="stat-card-header">
+                <span class="text-muted dashboard-stat-label">Projetos Ativos</span>
+                <i data-lucide="check-circle" class="stat-card-icon stat-icon-accent"></i>
+            </div>
+            <div class="stats-value" id="activeProjects">--</div>
+            <small class="text-muted">Carteira em andamento</small>
+        </article>
+    </section>
+
+    <section class="dashboard-panels">
+        <article class="glass-card dashboard-finance-card">
+            <h3 class="mb-3">Saude Financeira (Mes Atual)</h3>
+            <div class="dashboard-bars">
+                <div class="dashboard-bar-wrap">
+                    <div class="dashboard-bar-label">Receitas</div>
+                    <div class="dashboard-bar-track"><div class="dashboard-bar dashboard-bar-income" id="incomeBar"></div></div>
+                    <div class="dashboard-bar-value" id="incomeValue">R$ 0,00</div>
+                </div>
+                <div class="dashboard-bar-wrap">
+                    <div class="dashboard-bar-label">Despesas</div>
+                    <div class="dashboard-bar-track"><div class="dashboard-bar dashboard-bar-expense" id="expenseBar"></div></div>
+                    <div class="dashboard-bar-value" id="expenseValue">R$ 0,00</div>
+                </div>
+            </div>
+            <div class="dashboard-balance" id="monthBalance">Saldo do mes: R$ 0,00</div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-3">Agenda Rapida</h3>
+            <div id="quickAgenda" class="dashboard-list"></div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-3">Alertas do Sistema</h3>
+            <div id="dashboardAlerts" class="dashboard-list"></div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-3">Notificacoes Recentes</h3>
+            <div id="dashboardNotifications" class="dashboard-list"></div>
+        </article>
+    </section>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

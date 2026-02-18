@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agenda - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1 class="page-title">Agenda com Calendario</h1>
+            <p class="page-subtitle">Marque reunioes com clientes e profissionais.</p>
+        </div>
+    </header>
+
+    <div class="content-grid">
+        <section class="glass-card">
+            <h3 class="mb-3">Reunioes Agendadas</h3>
+            <div id="meetingList"></div>
+        </section>
+
+        <section class="glass-card">
+            <h3 class="mb-3">Nova Reuniao</h3>
+            <form id="meetingForm" class="flex-col gap-2">
+                <div class="form-group">
+                    <label class="form-label">Assunto</label>
+                    <input class="form-input" id="meetingTitle" type="text" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Cliente</label>
+                    <select class="form-input" id="meetingClient" required></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Profissional</label>
+                    <select class="form-input" id="meetingProfessional" required></select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Data e Hora</label>
+                    <input class="form-input" id="meetingDate" type="datetime-local" required>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Tipo</label>
+                    <select class="form-input" id="meetingType">
+                        <option value="presencial">Presencial</option>
+                        <option value="online">Online</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Local / Link</label>
+                    <input class="form-input" id="meetingLocation" type="text" placeholder="Sala 1 ou link da chamada">
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Observacoes</label>
+                    <textarea class="form-input" id="meetingNotes" rows="3"></textarea>
+                </div>
+                <button class="btn btn-primary" type="submit"><i data-lucide="calendar-plus"></i> Agendar</button>
+            </form>
+        </section>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/agenda.js"></script>
+</body>
+</html>

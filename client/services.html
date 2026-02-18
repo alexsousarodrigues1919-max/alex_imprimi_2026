@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atendimentos - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .services-subtitle { color: var(--text-muted); }
+        .services-table-wrap { padding: 1.5rem; margin-top: 2rem; }
+        .services-loading { text-align: center; padding: 2rem; color: var(--text-muted); }
+        .service-modal-content { width: 100%; max-width: 650px; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>
+            <h2>Diario de Atendimentos</h2>
+            <p class="services-subtitle">Registre e consulte as interacoes com seus clientes.</p>
+        </div>
+        <button class="btn btn-primary" onclick="openModal()"><i data-lucide="headset"></i> Novo Atendimento</button>
+    </div>
+
+    <div class="glass-card fade-in services-table-wrap">
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Data/Hora</th>
+                    <th>Cliente</th>
+                    <th>Profissional</th>
+                    <th>Tipo</th>
+                    <th>Valor</th>
+                    <th>Acoes</th>
+                </tr>
+            </thead>
+            <tbody id="servicesList">
+                <tr>
+                    <td colspan="6" class="services-loading">Processando atendimentos...</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div id="serviceModal" class="modal">
+        <div class="modal-content glass-card service-modal-content">
+            <h3 class="mb-3">Registrar Atendimento</h3>
+            <form id="serviceForm">
+                <div class="form-group">
+                    <label class="form-label">Cliente</label>
+                    <select class="form-input" id="servClient" required>
+                        <option value="">Selecione o cliente...</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Profissional Responsavel</label>
+                    <select class="form-input" id="servProf" required>
+                        <option value="">Selecione o profissional...</option>
+                    </select>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Tipo de Servico</label>
+                        <input class="form-input" type="text" id="servType" required placeholder="Ex: Consulta, Assessoria">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Valor (Opcional)</label>
+                        <input class="form-input" type="number" id="servValue" step="0.01" value="0">
+                    </div>
+                </div>
+                <div class="grid-2">
+                    <div class="form-group">
+                        <label class="form-label">Data</label>
+                        <input class="form-input" type="date" id="servDate" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Hora</label>
+                        <input class="form-input" type="time" id="servTime" required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Descricao Breve</label>
+                    <textarea class="form-input" id="servDesc" rows="3" placeholder="Resumo do atendimento..."></textarea>
+                </div>
+                <div class="actions-row">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Voltar</button>
+                    <button type="submit" class="btn btn-primary">Confirmar Registro</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/services.js"></script>
+</body>
+</html>

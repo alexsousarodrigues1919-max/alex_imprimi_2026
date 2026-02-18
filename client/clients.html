@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clientes - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1 class="page-title">Cadastro de Clientes</h1>
+            <p class="page-subtitle">Gestao de cliente PF e PJ com validacoes.</p>
+        </div>
+        <a href="client-form.html" class="btn btn-primary"><i data-lucide="user-plus"></i> Novo Cliente</a>
+    </header>
+
+    <div class="glass-card fade-in mb-4">
+        <div class="table-container">
+            <table class="data-table" id="clientsTable">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Documento</th>
+                        <th>Tipo</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Acoes</th>
+                    </tr>
+                </thead>
+                <tbody id="clientsList">
+                    <tr>
+                        <td colspan="6" class="text-center p-3 text-muted">Carregando clientes...</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/clients.js"></script>
+</body>
+</html>

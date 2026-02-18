@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Cliente - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <div class="dashboard-layout">
+        <!-- Sidebar injected by components.js -->
+
+        <main class="main-content">
+            <header class="header">
+                <div>
+                    <h1 class="page-title">Gestão de Clientes</h1>
+                    <p class="page-subtitle">Cadastre ou edite as informações do seu cliente.</p>
+                </div>
+                <a href="clients.html" class="btn btn-outline">
+                    <i data-lucide="arrow-left"></i> Voltar à Lista
+                </a>
+            </header>
+
+            <div class="glass-card fade-in max-w-800 center-block">
+                <h3 class="mb-4">Informações do Cliente</h3>
+                <form id="clientForm">
+                    <div class="register-grid">
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Cliente</label>
+                            <select class="form-input" id="type" onchange="toggleFields()">
+                                <option value="PF">Pessoa Física (PF)</option>
+                                <option value="PJ">Pessoa Jurídica (PJ)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" id="docLabel">CPF</label>
+                            <input class="form-input" type="text" id="document" required placeholder="000.000.000-00">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label" id="nameLabel">Nome Completo</label>
+                            <input class="form-input" type="text" id="name" required placeholder="Nome ou Razão Social">
+                        </div>
+                        <div class="form-group" id="birthDateGroup">
+                            <label class="form-label">Data de Nascimento</label>
+                            <input class="form-input" type="date" id="birthdate">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Telefone / WhatsApp</label>
+                            <input class="form-input" type="tel" id="phone" placeholder="(00) 00000-0000">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">Email</label>
+                            <input class="form-input" type="email" id="email" placeholder="cliente@email.com">
+                        </div>
+                        <div class="form-group full-width">
+                            <label class="form-label">Endereço Completo</label>
+                            <input class="form-input" type="text" id="address"
+                                placeholder="Rua, Número, Bairro, Cidade - UF">
+                        </div>
+                    </div>
+
+                    <div id="errorMessage" class="error-message"></div>
+
+                    <div class="mt-4 flex gap-2">
+                        <button type="submit" class="btn btn-primary">
+                            <i data-lucide="save"></i> Salvar Cliente
+                        </button>
+                        <button type="button" class="btn btn-outline" onclick="location.href='clients.html'">
+                            Cancelar
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </main>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/masks.js"></script>
+    <script src="js/client-form.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissionais - OfficePro</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .prof-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:1rem; }
+        .prof-card { padding:1rem; }
+        .prof-name { font-size:1.1rem; font-weight:700; }
+        .prof-specialty { color:var(--primary); font-weight:600; font-size:.875rem; }
+        .prof-info { font-size:.8rem; color:var(--text-muted); display:flex; flex-direction:column; gap:.2rem; margin-top:.7rem; }
+        .prof-actions { display:flex; justify-content:flex-end; margin-top:.8rem; }
+        .modal { display:none; position:fixed; inset:0; z-index:1001; background:rgba(0,0,0,.5); align-items:center; justify-content:center; }
+        .modal-content { width:100%; max-width:560px; padding:1.5rem; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1 class="page-title">Cadastro de Profissionais</h1>
+        <button class="btn btn-primary" onclick="openModal()"><i data-lucide="user-plus"></i> Novo Profissional</button>
+    </header>
+
+    <div id="profGrid" class="prof-grid"></div>
+
+    <div id="profModal" class="modal">
+        <div class="modal-content glass-card">
+            <h3 class="mb-3">Novo Profissional</h3>
+            <form id="profForm">
+                <div class="register-grid">
+                    <div class="form-group">
+                        <label class="form-label">Nome</label>
+                        <input class="form-input" id="profName" required>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Especialidade</label>
+                        <input class="form-input" id="profSpecialty" required>
+                    </div>
+                </div>
+                <div class="register-grid">
+                    <div class="form-group">
+                        <label class="form-label">CPF</label>
+                        <input class="form-input" id="profCpf">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Registro Profissional</label>
+                        <input class="form-input" id="profReg">
+                    </div>
+                </div>
+                <div class="register-grid">
+                    <div class="form-group">
+                        <label class="form-label">E-mail</label>
+                        <input class="form-input" type="email" id="profEmail">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Telefone</label>
+                        <input class="form-input" id="profPhone">
+                    </div>
+                </div>
+                <div class="register-grid">
+                    <div class="form-group">
+                        <label class="form-label">Horarios Disponiveis</label>
+                        <input class="form-input" id="profHours" placeholder="Seg-Sex 09:00-18:00">
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Comissao (%)</label>
+                        <input class="form-input" type="number" id="profCommission" value="0">
+                    </div>
+                </div>
+                <div id="modalError" class="error-message"></div>
+                <div class="flex gap-2">
+                    <button type="button" class="btn btn-outline" onclick="closeModal()">Cancelar</button>
+                    <button type="submit" class="btn btn-primary">Salvar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/masks.js"></script>
+    <script src="js/professionals.js"></script>
+</body>
+</html>
