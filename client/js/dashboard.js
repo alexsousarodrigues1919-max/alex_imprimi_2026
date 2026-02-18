@@ -163,14 +163,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     }
 
-    const dashboardMenuSelect = document.getElementById('dashboardMenuSelect');
-    if (dashboardMenuSelect) {
-        dashboardMenuSelect.addEventListener('change', (e) => {
-            const target = e.target.value;
-            if (target) window.location.href = target;
-        });
-    }
-
     try {
         await loadDashboard();
     } catch (error) {
