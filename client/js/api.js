@@ -1,4 +1,20 @@
-const API_URL = 'http://localhost:3000/api';
+function resolveApiUrl() {
+    const override = window.localStorage.getItem('api_base_url');
+    if (override) {
+        return `${override.replace(/\/$/, '')}/api`;
+    }
+
+    const { protocol, hostname, origin } = window.location;
+    const isLocal = hostname === 'localhost' || hostname === '127.0.0.1';
+
+    if (isLocal && protocol.startsWith('http')) {
+        return 'http://localhost:3000/api';
+    }
+
+    return `${origin}/api`;
+}
+
+const API_URL = resolveApiUrl();
 
 function checkAuth() {
     const token = localStorage.getItem('token');
@@ -111,6 +127,11 @@ async function apiFetch(endpoint, options = {}) {
         }
 
         return data;
+    } catch (error) {
+        if (error instanceof TypeError) {
+            throw new Error('Falha de conexao com o servidor. Verifique se o backend esta online.');
+        }
+        throw error;
     } finally {
         toggleGlobalLoading(false);
     }
