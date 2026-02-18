@@ -40,12 +40,12 @@ async function loadMeetings() {
     meetingList.innerHTML = meetings
         .map(
             (m) => `
-            <div class="glass-card" style="padding:1rem;margin-bottom:.75rem;">
+            <div class="glass-card agenda-item">
                 <div class="flex justify-between items-center">
                     <strong>${escapeHtml(m.title)}</strong>
                     <span class="badge ${m.status === 'completed' ? 'badge-success' : m.status === 'cancelled' ? 'badge-danger' : 'badge-info'}">${escapeHtml(m.status)}</span>
                 </div>
-                <div style="font-size:.8rem;color:var(--text-muted);margin-top:.35rem;">
+                <div class="agenda-item-meta">
                     ${new Date(m.date).toLocaleString('pt-BR')} | Cliente: ${escapeHtml(m.client_name || '-')} | Profissional: ${escapeHtml(m.professional_name || '-')}
                 </div>
             </div>

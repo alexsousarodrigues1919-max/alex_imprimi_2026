@@ -16,7 +16,7 @@ async function loadReports() {
 
         reportCards.innerHTML = cards.map((c) => `
             <div class="glass-card">
-                <div class="text-muted" style="font-size:.85rem;">${escapeHtml(c.title)}</div>
+                <div class="text-muted report-card-title">${escapeHtml(c.title)}</div>
                 <div class="stats-value">${escapeHtml(String(c.value))}</div>
             </div>
         `).join('');

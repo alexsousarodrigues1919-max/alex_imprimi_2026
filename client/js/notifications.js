@@ -11,13 +11,13 @@ async function loadNotifications() {
         }
 
         list.innerHTML = notifications.map((n) => `
-            <div class="glass-card" style="padding:1rem;margin-bottom:.75rem;opacity:${n.is_read ? '.75' : '1'};">
+            <div class="glass-card notification-card${n.is_read ? ' notification-read' : ''}">
                 <div class="flex justify-between">
                     <strong>${escapeHtml(n.title)}</strong>
                     <small class="text-muted">${new Date(n.created_at).toLocaleString('pt-BR')}</small>
                 </div>
-                <p style="margin:.5rem 0;">${escapeHtml(n.message)}</p>
-                ${n.is_read ? '<span class="badge badge-info">Lida</span>' : `<button class="btn btn-outline" style="padding:.35rem .7rem;" onclick="markNotificationRead(${n.id}, this)">Marcar como lida</button>`}
+                <p class="notification-message">${escapeHtml(n.message)}</p>
+                ${n.is_read ? '<span class="badge badge-info">Lida</span>' : `<button class="btn btn-outline btn-read" onclick="markNotificationRead(${n.id}, this)">Marcar como lida</button>`}
             </div>
         `).join('');
     } catch (error) {

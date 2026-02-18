@@ -22,23 +22,12 @@ function ensureLucide() {
 function showSplashScreen() {
     const splash = document.createElement('div');
     splash.id = 'splash-screen';
-    splash.style = `
-        position: fixed;
-        inset: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        z-index: 10000;
-        background: linear-gradient(145deg, #0f172a, #1e293b);
-        color: #fff;
-        transition: opacity .45s ease;
-    `;
+    splash.className = 'splash-screen';
 
     splash.innerHTML = `
-        <div class="brand-icon" style="width:72px;height:72px;margin-bottom:16px;"><i data-lucide="briefcase-business"></i></div>
-        <h2 style="font-family: 'Outfit', sans-serif; letter-spacing: -.02em;">OfficePro</h2>
-        <p style="opacity:.75; margin-top:6px;">Carregando plataforma...</p>
+        <div class="brand-icon splash-brand-icon"><i data-lucide="briefcase-business"></i></div>
+        <h2 class="splash-title">OfficePro</h2>
+        <p class="splash-subtitle">Carregando plataforma...</p>
     `;
 
     document.body.appendChild(splash);
