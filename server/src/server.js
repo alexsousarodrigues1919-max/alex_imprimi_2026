@@ -23,6 +23,7 @@ const serviceRoutes = require('./routes/serviceRoutes');
 const notificationRoutes = require('./routes/notificationRoutes');
 const reportRoutes = require('./routes/reportRoutes');
 const productRoutes = require('./routes/productRoutes');
+const clientAccountRoutes = require('./routes/clientAccountRoutes');
 
 app.use('/api/auth', authRoutes);
 app.use('/api/clients', clientRoutes);
@@ -35,6 +36,7 @@ app.use('/api/services', serviceRoutes);
 app.use('/api/notifications', notificationRoutes);
 app.use('/api/reports', reportRoutes);
 app.use('/api/products', productRoutes);
+app.use('/api/client-accounts', clientAccountRoutes);
 
 app.get('/health', (req, res) => {
     res.json({ status: 'ok', timestamp: new Date().toISOString() });

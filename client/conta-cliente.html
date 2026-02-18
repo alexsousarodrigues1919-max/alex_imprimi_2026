@@ -14,13 +14,117 @@
     </div>
   </header>
 
-  <section class="glass-card">
+  <section class="stats-grid mb-4">
+    <article class="glass-card text-center p-3">
+      <div class="text-muted font-semibold mb-1">Contas em Aberto</div>
+      <div class="stats-value" id="caOpenCount">0</div>
+    </article>
+    <article class="glass-card text-center p-3">
+      <div class="text-muted font-semibold mb-1">Contas Vencidas</div>
+      <div class="stats-value cell-danger" id="caOverdueCount">0</div>
+    </article>
+    <article class="glass-card text-center p-3">
+      <div class="text-muted font-semibold mb-1">Valor a Receber</div>
+      <div class="stats-value" id="caOpenAmount">R$ 0,00</div>
+    </article>
+    <article class="glass-card text-center p-3">
+      <div class="text-muted font-semibold mb-1">Recebido no Período</div>
+      <div class="stats-value text-success" id="caPaidAmount">R$ 0,00</div>
+    </article>
+  </section>
+
+  <section class="glass-card mb-4">
     <h3 class="mb-2">Módulo em Produção</h3>
-    <p class="text-muted">Aqui você controla contas abertas, recebimentos e pendências.</p>
+    <p class="text-muted mb-3">Aqui você controla contas abertas, recebimentos e pendências.</p>
+
+    <form id="clientAccountForm" class="register-grid">
+      <div class="form-group">
+        <label class="form-label">Cliente</label>
+        <select class="form-input" id="caClient" required></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Descrição</label>
+        <input class="form-input" id="caDescription" type="text" required placeholder="Ex: Serviço de impressão lote fevereiro">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Valor (R$)</label>
+        <input class="form-input" id="caAmount" type="text" inputmode="decimal" required placeholder="0,00">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Vencimento</label>
+        <input class="form-input" id="caDueDate" type="date" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Parcelas</label>
+        <select class="form-input" id="caInstallments">
+          <option value="1">À vista (1x)</option>
+          <option value="2">2x</option>
+          <option value="3">3x</option>
+          <option value="4">4x</option>
+          <option value="5">5x</option>
+          <option value="6">6x</option>
+          <option value="9">9x</option>
+          <option value="12">12x</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Intervalo entre Parcelas</label>
+        <select class="form-input" id="caInstallmentInterval">
+          <option value="1">Mensal (1 mês)</option>
+          <option value="2">Bimestral (2 meses)</option>
+          <option value="3">Trimestral (3 meses)</option>
+          <option value="6">Semestral (6 meses)</option>
+        </select>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Observações</label>
+        <input class="form-input" id="caNotes" type="text" placeholder="Opcional">
+      </div>
+      <div class="form-group full-width">
+        <button type="submit" class="btn btn-primary" id="caSaveBtn"><i data-lucide="plus-circle"></i> Cadastrar Conta</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="glass-card">
+    <div class="register-grid">
+      <div class="form-group">
+        <label class="form-label">Filtrar por Cliente</label>
+        <select class="form-input" id="caFilterClient"></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Filtrar por Status</label>
+        <select class="form-input" id="caFilterStatus">
+          <option value="">Todos</option>
+          <option value="open">Em Aberto</option>
+          <option value="overdue">Vencidas</option>
+          <option value="paid">Recebidas</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Cliente</th>
+            <th>Descrição</th>
+            <th>Vencimento</th>
+            <th>Status</th>
+            <th>Valor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="caList">
+          <tr><td colspan="6" class="text-center p-3 text-muted">Carregando contas...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/masks.js"></script>
+  <script src="js/conta-cliente.js"></script>
 </body>
 </html>
-

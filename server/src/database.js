@@ -62,6 +62,21 @@ function initializeTables() {
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )`);
 
+        db.run(`CREATE TABLE IF NOT EXISTS client_accounts (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            client_id INTEGER NOT NULL,
+            description TEXT NOT NULL,
+            amount REAL NOT NULL,
+            due_date TEXT NOT NULL,
+            status TEXT NOT NULL DEFAULT 'open' CHECK(status IN ('open', 'paid', 'overdue')),
+            paid_date TEXT,
+            notes TEXT,
+            created_by INTEGER,
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY(client_id) REFERENCES clients(id),
+            FOREIGN KEY(created_by) REFERENCES users(id)
+        )`);
+
         db.run(`CREATE TABLE IF NOT EXISTS financials (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             type TEXT NOT NULL CHECK(type IN ('expense', 'income')),
@@ -195,6 +210,9 @@ function initializeTables() {
         ensureColumn('users', 'last_access', 'DATETIME');
 
         ensureColumn('clients', 'status', "TEXT DEFAULT 'active'");
+        ensureColumn('client_accounts', 'notes', 'TEXT');
+        ensureColumn('client_accounts', 'created_by', 'INTEGER');
+        ensureColumn('client_accounts', 'created_at', 'DATETIME');
 
         ensureColumn('financials', 'created_by', 'INTEGER');
         ensureColumn('financials', 'created_at', 'DATETIME');
