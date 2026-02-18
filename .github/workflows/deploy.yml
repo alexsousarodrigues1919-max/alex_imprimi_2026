@@ -37,8 +37,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Render Deploy Hook
-        if: ${{ secrets.RENDER_DEPLOY_HOOK_URL != '' }}
-        run: curl -fsSL -X POST "${{ secrets.RENDER_DEPLOY_HOOK_URL }}"
+        env:
+          RENDER_DEPLOY_HOOK_URL: ${{ secrets.RENDER_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$RENDER_DEPLOY_HOOK_URL" ]; then
+            curl -fsSL -X POST "$RENDER_DEPLOY_HOOK_URL"
+          else
+            echo "RENDER_DEPLOY_HOOK_URL nao configurado. Pulando deploy Render."
+          fi
 
   deploy-railway:
     if: github.ref == 'refs/heads/main'
@@ -46,5 +52,11 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Trigger Railway Deploy Hook
-        if: ${{ secrets.RAILWAY_DEPLOY_HOOK_URL != '' }}
-        run: curl -fsSL -X POST "${{ secrets.RAILWAY_DEPLOY_HOOK_URL }}"
+        env:
+          RAILWAY_DEPLOY_HOOK_URL: ${{ secrets.RAILWAY_DEPLOY_HOOK_URL }}
+        run: |
+          if [ -n "$RAILWAY_DEPLOY_HOOK_URL" ]; then
+            curl -fsSL -X POST "$RAILWAY_DEPLOY_HOOK_URL"
+          else
+            echo "RAILWAY_DEPLOY_HOOK_URL nao configurado. Pulando deploy Railway."
+          fi
