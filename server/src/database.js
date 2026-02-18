@@ -68,12 +68,23 @@ function initializeTables() {
             amount REAL NOT NULL,
             category TEXT,
             description TEXT NOT NULL,
+            details TEXT,
             date TEXT NOT NULL,
             client_id INTEGER,
             created_by INTEGER,
             created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
             FOREIGN KEY(client_id) REFERENCES clients(id),
             FOREIGN KEY(created_by) REFERENCES users(id)
+        )`);
+
+        db.run(`CREATE TABLE IF NOT EXISTS products (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            name TEXT NOT NULL,
+            category TEXT,
+            price REAL NOT NULL DEFAULT 0,
+            stock INTEGER NOT NULL DEFAULT 0,
+            status TEXT NOT NULL DEFAULT 'active',
+            created_at DATETIME DEFAULT CURRENT_TIMESTAMP
         )`);
 
         db.run(`CREATE TABLE IF NOT EXISTS professionals (
@@ -187,6 +198,7 @@ function initializeTables() {
 
         ensureColumn('financials', 'created_by', 'INTEGER');
         ensureColumn('financials', 'created_at', 'DATETIME');
+        ensureColumn('financials', 'details', 'TEXT');
 
         ensureColumn('professionals', 'cpf', 'TEXT');
         ensureColumn('professionals', 'available_hours', 'TEXT');

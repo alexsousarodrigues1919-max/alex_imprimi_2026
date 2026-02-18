@@ -14,13 +14,70 @@
     </div>
   </header>
 
+  <section class="glass-card mb-4">
+    <h3 class="mb-3" id="productFormTitle">Cadastro de Produto</h3>
+    <form id="productForm" class="register-grid">
+      <input type="hidden" id="productId">
+      <div class="form-group">
+        <label class="form-label">Nome do Produto</label>
+        <input class="form-input" id="productName" type="text" required placeholder="Ex: Cartão de Visita">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Categoria</label>
+        <input class="form-input" id="productCategory" type="text" placeholder="Ex: Impressão rápida">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Preço de Venda (R$)</label>
+        <input class="form-input" id="productPrice" type="text" inputmode="decimal" required placeholder="0,00">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Estoque</label>
+        <input class="form-input" id="productStock" type="number" min="0" step="1" value="0" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-input" id="productStatus">
+          <option value="active">Ativo</option>
+          <option value="inactive">Inativo</option>
+        </select>
+      </div>
+      <div class="form-group full-width">
+        <div class="actions-row m-0">
+          <button type="submit" class="btn btn-primary" id="saveProductBtn">
+            <i data-lucide="save"></i> Salvar Produto
+          </button>
+          <button type="button" class="btn btn-outline" id="cancelProductEditBtn">
+            <i data-lucide="x-circle"></i> Cancelar Edição
+          </button>
+        </div>
+      </div>
+    </form>
+  </section>
+
   <section class="glass-card">
-    <h3 class="mb-2">Módulo em Produção</h3>
-    <p class="text-muted">Aqui você cadastra itens, categorias, custo e preço de venda.</p>
+    <h3 class="mb-3">Lista de Produtos</h3>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Categoria</th>
+            <th>Preço</th>
+            <th>Estoque</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="productsList">
+          <tr><td colspan="6" class="text-center p-3 text-muted">Carregando produtos...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/masks.js"></script>
+  <script src="js/produtos.js"></script>
 </body>
 </html>
-

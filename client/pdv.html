@@ -12,15 +12,130 @@
       <h1 class="page-title">PDV</h1>
       <p class="page-subtitle">Aqui você registra vendas, pagamentos e emissão de comprovante no PDV.</p>
     </div>
+    <button type="button" class="btn btn-outline" id="btnPrintPreview">
+      <i data-lucide="printer"></i> Imprimir Prévia
+    </button>
   </header>
 
-  <section class="glass-card">
-    <h3 class="mb-2">Módulo em Produção</h3>
-    <p class="text-muted">Aqui você registra vendas, pagamentos e fluxo de caixa operacional.</p>
+  <section class="glass-card mb-4">
+    <h3 class="mb-3">Módulo em Produção</h3>
+    <p class="text-muted mb-3">Aqui você registra vendas, pagamentos e fluxo de caixa operacional.</p>
+
+    <form id="pdvItemForm" class="register-grid">
+      <div class="form-group">
+        <label class="form-label">Produto Cadastrado (Opcional)</label>
+        <select class="form-input" id="pdvProduct">
+          <option value="">Selecionar produto...</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Produto / Serviço</label>
+        <input class="form-input" id="pdvItemName" type="text" placeholder="Ex: Impressão A4 colorida" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Quantidade</label>
+        <input class="form-input" id="pdvItemQty" type="number" min="1" step="1" value="1" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Valor Unitário (R$)</label>
+        <input class="form-input" id="pdvItemPrice" type="text" inputmode="decimal" placeholder="0,00" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Observação</label>
+        <input class="form-input" id="pdvItemNote" type="text" placeholder="Opcional">
+      </div>
+      <div class="form-group full-width">
+        <button type="submit" class="btn btn-primary">
+          <i data-lucide="plus-circle"></i> Adicionar Item
+        </button>
+      </div>
+    </form>
+  </section>
+
+  <section class="content-grid">
+    <div class="glass-card">
+      <h3 class="mb-3">Carrinho de Venda</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Item</th>
+              <th>Qtd</th>
+              <th>Unitário</th>
+              <th>Total</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="pdvCartList">
+            <tr><td colspan="5" class="text-center p-3 text-muted">Nenhum item adicionado.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="glass-card">
+      <h3 class="mb-3">Finalizar Venda</h3>
+      <form id="pdvCheckoutForm" class="flex-col gap-2">
+        <div class="form-group">
+          <label class="form-label">Cliente (Opcional)</label>
+          <select class="form-input" id="pdvClient"></select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Forma de Pagamento</label>
+          <select class="form-input" id="pdvPayment" required>
+            <option value="">Selecione</option>
+            <option value="pix">PIX</option>
+            <option value="dinheiro">Dinheiro</option>
+            <option value="cartao_credito">Cartão de Crédito</option>
+            <option value="cartao_debito">Cartão de Débito</option>
+            <option value="boleto">Boleto</option>
+            <option value="transferencia">Transferência</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Desconto (R$)</label>
+          <input class="form-input" id="pdvDiscount" type="text" inputmode="decimal" placeholder="0,00">
+        </div>
+        <div class="glass-card p-2">
+          <div class="flex justify-between mb-1"><span class="text-muted">Subtotal</span><strong id="pdvSubtotal">R$ 0,00</strong></div>
+          <div class="flex justify-between mb-1"><span class="text-muted">Desconto</span><strong id="pdvDiscountValue">R$ 0,00</strong></div>
+          <div class="flex justify-between"><span class="fw-700">Total</span><strong id="pdvTotal" class="text-success">R$ 0,00</strong></div>
+        </div>
+        <div class="actions-row">
+          <button type="button" class="btn btn-outline" id="btnClearCart">
+            <i data-lucide="trash-2"></i> Limpar
+          </button>
+          <button type="submit" class="btn btn-primary" id="btnFinalizeSale">
+            <i data-lucide="check-circle"></i> Finalizar Venda
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section class="glass-card mt-4">
+    <h3 class="mb-3">Últimas Vendas (PDV)</h3>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data</th>
+            <th>Descrição</th>
+            <th>Categoria</th>
+            <th>Valor</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="pdvSalesHistory">
+          <tr><td colspan="5" class="text-center p-3 text-muted">Carregando vendas...</td></tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/masks.js"></script>
+  <script src="js/pdv.js"></script>
 </body>
 </html>
-
