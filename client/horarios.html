@@ -14,13 +14,148 @@
     </div>
   </header>
 
-  <section class="glass-card">
+  <section class="glass-card mb-4">
     <h3 class="mb-2">Módulo em Produção</h3>
     <p class="text-muted">Aqui você define disponibilidade, bloqueios e confirmações de horários.</p>
   </section>
 
+  <section class="content-grid mb-4">
+    <article class="glass-card">
+      <h3 class="mb-3">Disponibilidade do Profissional</h3>
+      <form id="availabilityForm" class="flex-col gap-2">
+        <div class="form-group">
+          <label class="form-label">Profissional</label>
+          <select class="form-input" id="avProfessional" required></select>
+        </div>
+        <div class="register-grid">
+          <div class="form-group">
+            <label class="form-label">Dia da Semana</label>
+            <select class="form-input" id="avWeekday" required>
+              <option value="1">Segunda</option>
+              <option value="2">Terça</option>
+              <option value="3">Quarta</option>
+              <option value="4">Quinta</option>
+              <option value="5">Sexta</option>
+              <option value="6">Sábado</option>
+              <option value="0">Domingo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Duração do Slot (min)</label>
+            <select class="form-input" id="avSlot" required>
+              <option value="30">30 min</option>
+              <option value="45">45 min</option>
+              <option value="60">60 min</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Início</label>
+            <input class="form-input" id="avStart" type="time" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fim</label>
+            <input class="form-input" id="avEnd" type="time" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" id="avSaveBtn"><i data-lucide="calendar-check-2"></i> Salvar Disponibilidade</button>
+      </form>
+    </article>
+
+    <article class="glass-card">
+      <h3 class="mb-3">Bloqueio de Horário</h3>
+      <form id="blockForm" class="flex-col gap-2">
+        <div class="form-group">
+          <label class="form-label">Profissional</label>
+          <select class="form-input" id="blProfessional" required></select>
+        </div>
+        <div class="register-grid">
+          <div class="form-group">
+            <label class="form-label">Data</label>
+            <input class="form-input" id="blDate" type="date" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Motivo</label>
+            <input class="form-input" id="blReason" type="text" placeholder="Ex: Almoço / Externo" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Início</label>
+            <input class="form-input" id="blStart" type="time" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Fim</label>
+            <input class="form-input" id="blEnd" type="time" required>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-outline" id="blSaveBtn"><i data-lucide="calendar-x-2"></i> Bloquear Horário</button>
+      </form>
+    </article>
+  </section>
+
+  <section class="glass-card mb-4">
+    <h3 class="mb-3">Confirmações de Horários (Reuniões)</h3>
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Data/Hora</th>
+            <th>Título</th>
+            <th>Cliente</th>
+            <th>Profissional</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="confirmationsList">
+          <tr><td colspan="6" class="text-center p-3 text-muted">Carregando horários...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="content-grid">
+    <article class="glass-card">
+      <h3 class="mb-3">Disponibilidades Cadastradas</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Profissional</th>
+              <th>Dia</th>
+              <th>Janela</th>
+              <th>Slot</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="availabilityList">
+            <tr><td colspan="5" class="text-center p-3 text-muted">Sem disponibilidades.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+
+    <article class="glass-card">
+      <h3 class="mb-3">Bloqueios Cadastrados</h3>
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Profissional</th>
+              <th>Data</th>
+              <th>Horário</th>
+              <th>Motivo</th>
+              <th>Ações</th>
+            </tr>
+          </thead>
+          <tbody id="blocksList">
+            <tr><td colspan="5" class="text-center p-3 text-muted">Sem bloqueios.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </article>
+  </section>
+
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/horarios.js"></script>
 </body>
 </html>
-
