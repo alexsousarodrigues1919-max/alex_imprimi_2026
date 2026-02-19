@@ -14,13 +14,115 @@
     </div>
   </header>
 
-  <section class="glass-card">
+  <section class="glass-card fade-in mb-4">
     <h3 class="mb-2">Módulo em Produção</h3>
     <p class="text-muted">Aqui você organiza etapas, prioridade, responsáveis e prazos.</p>
   </section>
 
+  <section class="stats-grid mb-4">
+    <article class="glass-card fade-in text-center p-3">
+      <div class="text-muted font-semibold mb-1">Total de Itens</div>
+      <div class="stats-value" id="plTotal">0</div>
+    </article>
+    <article class="glass-card fade-in text-center p-3">
+      <div class="text-muted font-semibold mb-1">Concluídos</div>
+      <div class="stats-value text-success" id="plDone">0</div>
+    </article>
+    <article class="glass-card fade-in text-center p-3">
+      <div class="text-muted font-semibold mb-1">Em Andamento</div>
+      <div class="stats-value" id="plDoing">0</div>
+    </article>
+    <article class="glass-card fade-in text-center p-3">
+      <div class="text-muted font-semibold mb-1">Atrasados</div>
+      <div class="stats-value cell-danger" id="plLate">0</div>
+    </article>
+  </section>
+
+  <section class="glass-card fade-in mb-4">
+    <h3 class="mb-3">Novo Item de Planejamento</h3>
+    <form id="planningForm" class="register-grid">
+      <div class="form-group">
+        <label class="form-label">Etapa / Tarefa</label>
+        <input class="form-input" id="plTitle" type="text" required placeholder="Ex: Revisar contrato final">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Responsável</label>
+        <select class="form-input" id="plResponsible" required></select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prioridade</label>
+        <select class="form-input" id="plPriority" required>
+          <option value="alta">Alta</option>
+          <option value="media" selected>Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Prazo</label>
+        <input class="form-input" id="plDueDate" type="date" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Status</label>
+        <select class="form-input" id="plStatus" required>
+          <option value="pendente">Pendente</option>
+          <option value="andamento">Em Andamento</option>
+          <option value="concluido">Concluído</option>
+        </select>
+      </div>
+      <div class="form-group full-width">
+        <label class="form-label">Observações</label>
+        <input class="form-input" id="plNotes" type="text" placeholder="Opcional">
+      </div>
+      <div class="form-group full-width">
+        <button type="submit" class="btn btn-primary" id="plSaveBtn"><i data-lucide="plus-circle"></i> Adicionar Planejamento</button>
+      </div>
+    </form>
+  </section>
+
+  <section class="glass-card fade-in mb-4">
+    <div class="register-grid">
+      <div class="form-group">
+        <label class="form-label">Filtro por Status</label>
+        <select class="form-input" id="plFilterStatus">
+          <option value="">Todos</option>
+          <option value="pendente">Pendente</option>
+          <option value="andamento">Em Andamento</option>
+          <option value="concluido">Concluído</option>
+          <option value="atrasado">Atrasado</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Filtro por Prioridade</label>
+        <select class="form-input" id="plFilterPriority">
+          <option value="">Todas</option>
+          <option value="alta">Alta</option>
+          <option value="media">Média</option>
+          <option value="baixa">Baixa</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="table-container">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Etapa / Tarefa</th>
+            <th>Responsável</th>
+            <th>Prioridade</th>
+            <th>Prazo</th>
+            <th>Status</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="planningList">
+          <tr><td colspan="6" class="text-center p-3 text-muted">Carregando planejamento...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
   <script src="js/api.js"></script>
   <script src="js/components.js"></script>
+  <script src="js/planejamento.js"></script>
 </body>
 </html>
-
