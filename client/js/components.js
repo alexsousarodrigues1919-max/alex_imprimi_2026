@@ -76,6 +76,7 @@ function injectSidebar() {
         { href: 'planejamento.html', icon: 'list-checks', label: 'Planejamento', key: 'planejamento' },
         { href: 'services.html', icon: 'headset', label: 'Atendimento', key: 'services' },
         { href: 'professionals.html', icon: 'briefcase', label: 'Profissionais', key: 'professionals' },
+        { href: 'users.html', icon: 'user-cog', label: 'Usuários', key: 'users' },
         { href: 'reports.html', icon: 'bar-chart-3', label: 'Relatórios', key: 'reports' },
         { href: 'notifications.html', icon: 'bell', label: 'Notificações', key: 'notifications' },
         { href: 'settings.html', icon: 'settings', label: 'Configurações', key: 'settings' },
@@ -123,3 +124,4 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
+

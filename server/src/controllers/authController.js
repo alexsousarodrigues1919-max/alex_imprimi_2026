@@ -1,4 +1,4 @@
-const bcrypt = require('bcryptjs');
+﻿const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const db = require('../database');
 const { logActivity } = require('../utils/logger');
@@ -155,6 +155,19 @@ exports.me = (req, res) => {
             if (err) return res.status(500).json({ message: 'Erro ao buscar perfil.' });
             if (!user) return res.status(404).json({ message: 'Usuario nao encontrado.' });
             res.json(user);
+        }
+    );
+};
+
+exports.listUsers = (req, res) => {
+    db.all(
+        `SELECT id, name, email, role, cpf, phone, status, created_at, last_access
+         FROM users
+         ORDER BY created_at DESC, id DESC`,
+        [],
+        (err, rows) => {
+            if (err) return res.status(500).json({ message: 'Erro ao buscar usuarios.' });
+            res.json(rows);
         }
     );
 };

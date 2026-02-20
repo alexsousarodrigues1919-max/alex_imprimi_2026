@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuarios Cadastrados - Alex_Impressão</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1 class="page-title">Lista de Usuários</h1>
+            <p class="page-subtitle">Acompanhe os usuários cadastrados no sistema.</p>
+        </div>
+    </header>
+
+    <section class="glass-card fade-in mb-4">
+        <h3 class="mb-2">Usuários Cadastrados</h3>
+        <p class="text-muted">Visualize nome, e-mail, perfil e situação de acesso.</p>
+    </section>
+
+    <section class="glass-card fade-in">
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>E-mail</th>
+                        <th>Perfil</th>
+                        <th>Telefone</th>
+                        <th>Status</th>
+                        <th>Criado em</th>
+                        <th>Último acesso</th>
+                    </tr>
+                </thead>
+                <tbody id="usersList">
+                    <tr><td colspan="7" class="text-center p-3 text-muted">Carregando usuários...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/users.js"></script>
+</body>
+</html>
