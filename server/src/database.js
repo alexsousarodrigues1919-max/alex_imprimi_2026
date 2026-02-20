@@ -4,11 +4,28 @@ const path = require('path');
 
 const isProd = process.env.NODE_ENV === 'production';
 const defaultDbPath = isProd ? '/var/data/office.db' : './src/office.db';
-const dbPath = path.resolve(process.cwd(), process.env.DB_PATH || defaultDbPath);
+const requestedDbPath = process.env.DB_PATH || defaultDbPath;
+let dbPath = path.resolve(process.cwd(), requestedDbPath);
 
-const dbDir = path.dirname(dbPath);
-if (!fs.existsSync(dbDir)) {
-    fs.mkdirSync(dbDir, { recursive: true });
+function ensureDbDir(targetPath) {
+    const dir = path.dirname(targetPath);
+    if (!fs.existsSync(dir)) {
+        fs.mkdirSync(dir, { recursive: true });
+    }
+}
+
+try {
+    ensureDbDir(dbPath);
+} catch (err) {
+    const fallbackPath = path.resolve(process.cwd(), './src/office.db');
+
+    if (process.env.DB_PATH) {
+        throw err;
+    }
+
+    ensureDbDir(fallbackPath);
+    console.warn(`DB_PATH sem permissao (${dbPath}). Usando fallback: ${fallbackPath}`);
+    dbPath = fallbackPath;
 }
 
 const db = new sqlite3.Database(dbPath, (err) => {
@@ -245,5 +262,6 @@ function initializeTables() {
 }
 
 module.exports = db;
+
 
 
