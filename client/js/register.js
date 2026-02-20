@@ -1,4 +1,4 @@
-function onlyDigits(value) {
+﻿function onlyDigits(value) {
     return String(value || '').replace(/\D/g, '');
 }
 
@@ -82,3 +82,25 @@ if (registerForm) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const pairs = [
+        { inputId: 'password', toggleId: 'togglePassword' },
+        { inputId: 'confirmPassword', toggleId: 'toggleConfirmPassword' },
+    ];
+
+    pairs.forEach(({ inputId, toggleId }) => {
+        const input = document.getElementById(inputId);
+        const toggle = document.getElementById(toggleId);
+
+        if (!input || !toggle) return;
+
+        toggle.addEventListener('click', () => {
+            const isVisible = input.type === 'text';
+            input.type = isVisible ? 'password' : 'text';
+            toggle.setAttribute('aria-label', isVisible ? 'Mostrar senha' : 'Ocultar senha');
+            toggle.innerHTML = `<i data-lucide="${isVisible ? 'eye' : 'eye-off'}"></i>`;
+            if (typeof lucide !== 'undefined') lucide.createIcons();
+        });
+    });
+});
