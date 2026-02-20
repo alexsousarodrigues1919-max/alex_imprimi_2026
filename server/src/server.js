@@ -15,7 +15,7 @@ const PORT = process.env.PORT || 3000;
 
 if (
     process.env.NODE_ENV === 'production'
-    && (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'secret_key_123')
+    && (!process.env.JWT_SECRET || process.env.JWT_SECRET === 'Alexsousarodrigues2026@gmail.com')
 ) {
     throw new Error('JWT_SECRET inseguro em producao. Configure uma chave forte.');
 }
