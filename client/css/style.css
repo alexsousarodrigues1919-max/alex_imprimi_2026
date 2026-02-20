@@ -1338,3 +1338,78 @@ svg {
     }
 }
 
+
+
+.password-wrap {
+    position: relative;
+}
+
+.password-wrap .form-input {
+    padding-right: 3rem;
+}
+
+.password-toggle {
+    position: absolute;
+    right: 0.55rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    color: var(--text-muted);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+}
+
+.password-toggle:hover {
+    background: hsla(221, 83%, 53%, 0.08);
+    color: var(--primary);
+}
+
+.auth-bg-shape {
+    position: absolute;
+    border-radius: 999px;
+    filter: blur(2px);
+    opacity: 0.25;
+    z-index: 0;
+    animation: authFloat 9s ease-in-out infinite;
+}
+
+.auth-bg-shape-1 {
+    width: 260px;
+    height: 260px;
+    left: -80px;
+    top: -60px;
+    background: radial-gradient(circle at 35% 35%, var(--primary-light), transparent 70%);
+}
+
+.auth-bg-shape-2 {
+    width: 220px;
+    height: 220px;
+    right: -70px;
+    bottom: -50px;
+    background: radial-gradient(circle at 45% 40%, var(--accent), transparent 72%);
+    animation-delay: 1.5s;
+}
+
+.auth-bg-shape-3 {
+    width: 180px;
+    height: 180px;
+    right: 20%;
+    top: 12%;
+    background: radial-gradient(circle at 30% 30%, var(--primary), transparent 74%);
+    animation-delay: 3s;
+}
+
+@keyframes authFloat {
+    0%,
+    100% {
+        transform: translateY(0px) scale(1);
+    }
+
+    50% {
+        transform: translateY(-16px) scale(1.03);
+    }
+}

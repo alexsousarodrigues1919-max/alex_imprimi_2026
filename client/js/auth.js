@@ -1,4 +1,4 @@
-const loginForm = document.getElementById('loginForm');
+﻿const loginForm = document.getElementById('loginForm');
 
 if (loginForm) {
     loginForm.addEventListener('submit', async (e) => {
@@ -35,3 +35,18 @@ if (loginForm) {
         }
     });
 }
+
+document.addEventListener('DOMContentLoaded', () => {
+    const passwordInput = document.getElementById('password');
+    const toggleButton = document.getElementById('togglePassword');
+
+    if (!passwordInput || !toggleButton) return;
+
+    toggleButton.addEventListener('click', () => {
+        const isVisible = passwordInput.type === 'text';
+        passwordInput.type = isVisible ? 'password' : 'text';
+        toggleButton.setAttribute('aria-label', isVisible ? 'Mostrar senha' : 'Ocultar senha');
+        toggleButton.innerHTML = `<i data-lucide="${isVisible ? 'eye' : 'eye-off'}"></i>`;
+        if (typeof lucide !== 'undefined') lucide.createIcons();
+    });
+});
