@@ -23,7 +23,9 @@ function isOriginAllowed(origin) {
         return /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin);
     }
 
-    return false;
+    // Fallback seguro para ambientes comuns de deploy quando ALLOWED_ORIGINS
+    // ainda nao foi configurado.
+    return /^https:\/\/([a-z0-9-]+\.)?(onrender\.com|railway\.app)$/i.test(origin);
 }
 
 function buildCorsOptions() {
