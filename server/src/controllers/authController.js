@@ -12,6 +12,9 @@ function signToken(user) {
 }
 
 exports.register = (req, res) => {
+    if (process.env.DISABLE_PUBLIC_REGISTER === 'true') {
+        return res.status(403).json({ message: 'Cadastro publico desativado pelo administrador.' });
+    }
     const {
         name,
         email,
@@ -171,3 +174,4 @@ exports.listUsers = (req, res) => {
         }
     );
 };
+

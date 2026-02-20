@@ -19,6 +19,33 @@
         <p class="text-muted">Visualize nome, e-mail, perfil e situação de acesso.</p>
     </section>
 
+    <section class="glass-card fade-in mb-4">
+        <div class="register-grid">
+            <div class="form-group">
+                <label class="form-label" for="usersSearch">Buscar por nome ou e-mail</label>
+                <input class="form-input" type="text" id="usersSearch" placeholder="Digite para buscar...">
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="usersRoleFilter">Filtrar por perfil</label>
+                <select class="form-input" id="usersRoleFilter">
+                    <option value="">Todos</option>
+                    <option value="administrador">Administrador</option>
+                    <option value="profissional">Profissional</option>
+                    <option value="atendimento">Atendimento</option>
+                    <option value="financeiro">Financeiro</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label class="form-label" for="usersStatusFilter">Filtrar por status</label>
+                <select class="form-input" id="usersStatusFilter">
+                    <option value="">Todos</option>
+                    <option value="active">Ativo</option>
+                    <option value="inactive">Inativo</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
     <section class="glass-card fade-in">
         <div class="table-container">
             <table class="data-table">
