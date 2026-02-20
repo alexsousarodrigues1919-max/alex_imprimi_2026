@@ -1,15 +1,22 @@
-const sqlite3 = require('sqlite3').verbose();
+﻿const sqlite3 = require('sqlite3').verbose();
+const fs = require('fs');
 const path = require('path');
 
-const dbPath = process.env.DB_PATH
-    ? path.resolve(process.cwd(), process.env.DB_PATH)
-    : path.resolve(__dirname, 'office.db');
+const isProd = process.env.NODE_ENV === 'production';
+const defaultDbPath = isProd ? '/var/data/office.db' : './src/office.db';
+const dbPath = path.resolve(process.cwd(), process.env.DB_PATH || defaultDbPath);
+
+const dbDir = path.dirname(dbPath);
+if (!fs.existsSync(dbDir)) {
+    fs.mkdirSync(dbDir, { recursive: true });
+}
 
 const db = new sqlite3.Database(dbPath, (err) => {
     if (err) {
         console.error('Error connecting to database:', err.message);
     } else {
         initializeTables();
+        console.log(`Database path: ${dbPath}`);
     }
 });
 
@@ -164,7 +171,7 @@ function initializeTables() {
 
         db.run(`CREATE TABLE IF NOT EXISTS company_config (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            name TEXT DEFAULT 'Alex_Impressão',
+            name TEXT DEFAULT 'Alex_ImpressÃ£o',
             cnpj TEXT,
             logo TEXT,
             phone TEXT,
@@ -200,7 +207,7 @@ function initializeTables() {
 
         db.get(`SELECT COUNT(*) as count FROM company_config`, (err, row) => {
             if (!err && row && row.count === 0) {
-                db.run(`INSERT INTO company_config (name) VALUES ('Alex_Impressão')`);
+                db.run(`INSERT INTO company_config (name) VALUES ('Alex_ImpressÃ£o')`);
             }
         });
 
@@ -238,3 +245,5 @@ function initializeTables() {
 }
 
 module.exports = db;
+
+

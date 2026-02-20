@@ -1,4 +1,4 @@
-# OfficePro - Plataforma para Escritorio
+﻿# OfficePro - Plataforma para Escritorio
 
 Sistema web full stack com login protegido, cadastro, agenda, financeiro, profissionais, projetos, atendimento, notificacoes e relatorios.
 
@@ -38,3 +38,12 @@ Observacao:
 - API: `server/src`
 - Frontend: `client/`
 - Workflow: `.github/workflows/deploy.yml`
+
+## Persistencia do banco em producao
+Para manter os dados durante manutencao e deploy, configure `DB_PATH` em um disco persistente.
+
+Exemplo Render:
+- Persistent Disk mount: `/var/data`
+- Variavel: `DB_PATH=/var/data/office.db`
+
+Com isso, reinicios e novos deploys mantem os dados do SQLite.
