@@ -1,4 +1,4 @@
-async function loadFinancial() {
+﻿async function loadFinancial() {
     const listBody = document.getElementById('financeList');
     if (!listBody) return;
 
@@ -120,5 +120,8 @@ document.addEventListener('DOMContentLoaded', () => {
         const dateInput = document.getElementById('finDate');
         if (dateInput) dateInput.value = new Date().toISOString().slice(0, 10);
         loadFinancial();
+        setupAutoRefresh(loadFinancial, { intervalMs: 30000 });
     }
 });
+
+

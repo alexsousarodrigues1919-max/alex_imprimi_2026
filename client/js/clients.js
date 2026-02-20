@@ -1,4 +1,4 @@
-async function loadClients() {
+﻿async function loadClients() {
     const listBody = document.getElementById('clientsList');
     if (!listBody) return;
 
@@ -61,5 +61,9 @@ async function deleteClient(id, btn) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('clients.html')) loadClients();
+    if (window.location.pathname.endsWith('clients.html')) {
+        loadClients();
+        setupAutoRefresh(loadClients, { intervalMs: 30000 });
+    }
 });
+

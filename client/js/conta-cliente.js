@@ -239,7 +239,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await loadClients();
         await loadAccounts();
+        setupAutoRefresh(loadAccounts, { intervalMs: 30000 });
     } catch (error) {
         showToast(error.message, 'error');
     }
 });
+

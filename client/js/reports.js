@@ -1,4 +1,4 @@
-async function loadReports() {
+﻿async function loadReports() {
     const reportCards = document.getElementById('reportCards');
     if (!reportCards) return;
 
@@ -26,5 +26,9 @@ async function loadReports() {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('reports.html')) loadReports();
+    if (window.location.pathname.endsWith('reports.html')) {
+        loadReports();
+        setupAutoRefresh(loadReports, { intervalMs: 30000 });
+    }
 });
+

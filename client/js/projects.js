@@ -1,4 +1,4 @@
-function openModal() {
+﻿function openModal() {
     document.getElementById('projectModal').style.display = 'flex';
 }
 
@@ -153,7 +153,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await loadProjectDependencies();
         await loadProjects();
+        setupAutoRefresh(loadProjects, { intervalMs: 30000 });
     } catch (error) {
         showToast(error.message, 'error');
     }
 });
+

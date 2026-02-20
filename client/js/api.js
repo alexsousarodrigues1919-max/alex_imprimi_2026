@@ -1,4 +1,4 @@
-function resolveApiUrl() {
+﻿function resolveApiUrl() {
     const override = window.localStorage.getItem('api_base_url');
     if (override) {
         return `${override.replace(/\/$/, '')}/api`;
@@ -173,4 +173,59 @@ function showToast(message, type = 'info') {
         toast.classList.remove('show');
         setTimeout(() => toast.remove(), 250);
     }, 3500);
+}
+
+function setupAutoRefresh(refreshFn, options = {}) {
+    if (typeof refreshFn !== 'function') return () => {};
+
+    const intervalMs = Number(options.intervalMs || 30000);
+    const runOnFocus = options.runOnFocus !== false;
+    const runOnOnline = options.runOnOnline !== false;
+    const runWhenHidden = options.runWhenHidden === true;
+
+    let stopped = false;
+    let timer = null;
+    let busy = false;
+
+    const safeRefresh = async () => {
+        if (stopped || busy) return;
+        if (!runWhenHidden && document.hidden) return;
+
+        busy = true;
+        try {
+            await refreshFn();
+        } catch {
+            // silencioso: cada modulo ja trata erro/toast
+        } finally {
+            busy = false;
+        }
+    };
+
+    const startTimer = () => {
+        if (timer) clearInterval(timer);
+        timer = setInterval(safeRefresh, intervalMs);
+    };
+
+    const onVisibility = () => {
+        if (document.hidden) return;
+        safeRefresh();
+    };
+
+    const onFocus = () => safeRefresh();
+    const onOnline = () => safeRefresh();
+
+    startTimer();
+    document.addEventListener('visibilitychange', onVisibility);
+    if (runOnFocus) window.addEventListener('focus', onFocus);
+    if (runOnOnline) window.addEventListener('online', onOnline);
+
+    safeRefresh();
+
+    return () => {
+        stopped = true;
+        if (timer) clearInterval(timer);
+        document.removeEventListener('visibilitychange', onVisibility);
+        if (runOnFocus) window.removeEventListener('focus', onFocus);
+        if (runOnOnline) window.removeEventListener('online', onOnline);
+    };
 }

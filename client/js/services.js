@@ -1,4 +1,4 @@
-function openModal() {
+﻿function openModal() {
     document.getElementById('serviceModal').style.display = 'flex';
 }
 
@@ -129,7 +129,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await loadServiceDependencies();
         await loadServices();
+        setupAutoRefresh(loadServices, { intervalMs: 30000 });
     } catch (error) {
         showToast(error.message, 'error');
     }
 });
+

@@ -374,9 +374,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         renderAvailabilities();
         renderBlocks();
         renderConfirmations();
+        setupAutoRefresh(loadMeetings, { intervalMs: 30000 });
     } catch (error) {
         showToast(error.message, 'error');
     }
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
+

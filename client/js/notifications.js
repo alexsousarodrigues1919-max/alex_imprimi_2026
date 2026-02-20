@@ -1,4 +1,4 @@
-async function loadNotifications() {
+﻿async function loadNotifications() {
     const list = document.getElementById('notificationsList');
     if (!list) return;
 
@@ -73,5 +73,9 @@ if (notificationForm) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('notifications.html')) loadNotifications();
+    if (window.location.pathname.endsWith('notifications.html')) {
+        loadNotifications();
+        setupAutoRefresh(loadNotifications, { intervalMs: 30000 });
+    }
 });
+

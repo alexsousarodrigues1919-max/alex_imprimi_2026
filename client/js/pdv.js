@@ -671,6 +671,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadClients();
     await loadProducts();
     await loadSalesHistory();
+    setupAutoRefresh(async () => {
+        await loadProducts();
+        await loadSalesHistory();
+    }, { intervalMs: 30000 });
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
+

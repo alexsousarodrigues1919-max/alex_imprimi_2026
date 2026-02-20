@@ -1,4 +1,4 @@
-async function loadMeetingDependencies() {
+﻿async function loadMeetingDependencies() {
     const clientSelect = document.getElementById('meetingClient');
     const professionalSelect = document.getElementById('meetingProfessional');
 
@@ -100,7 +100,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         await loadMeetingDependencies();
         await loadMeetings();
+        setupAutoRefresh(loadMeetings, { intervalMs: 30000 });
     } catch (error) {
         showToast(error.message, 'error');
     }
 });
+

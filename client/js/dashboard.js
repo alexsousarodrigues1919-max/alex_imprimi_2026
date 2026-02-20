@@ -1,4 +1,4 @@
-function formatCurrency(value) {
+﻿function formatCurrency(value) {
     return `R$ ${Number(value || 0).toLocaleString('pt-BR', { minimumFractionDigits: 2 })}`;
 }
 
@@ -121,7 +121,7 @@ function fillHeaderUser() {
     if (userRole) userRole.innerText = user.role || '-';
 
     if (userAvatar) {
-        const initials = (user.name || 'Alex Impressão')
+        const initials = (user.name || 'Alex ImpressÃ£o')
             .split(' ')
             .filter(Boolean)
             .slice(0, 2)
@@ -169,5 +169,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         showToast(error.message, 'error');
     }
 
+    setupAutoRefresh(loadDashboard, { intervalMs: 30000 });
+
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
+

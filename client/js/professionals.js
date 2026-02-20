@@ -1,4 +1,4 @@
-async function fetchProfessionals() {
+﻿async function fetchProfessionals() {
     const grid = document.getElementById('profGrid');
     if (!grid) return;
 
@@ -118,5 +118,9 @@ if (profForm) {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-    if (window.location.pathname.endsWith('professionals.html')) fetchProfessionals();
+    if (window.location.pathname.endsWith('professionals.html')) {
+        fetchProfessionals();
+        setupAutoRefresh(fetchProfessionals, { intervalMs: 30000 });
+    }
 });
+

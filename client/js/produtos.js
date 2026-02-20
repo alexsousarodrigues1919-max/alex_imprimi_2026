@@ -197,4 +197,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     await loadProducts();
+    setupAutoRefresh(loadProducts, { intervalMs: 30000 });
 });
+
+
