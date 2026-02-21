@@ -6,6 +6,7 @@ if (loginForm) {
 
         const email = document.getElementById('email').value.trim();
         const password = document.getElementById('password').value;
+        const loginAccessType = document.getElementById('loginAccessType')?.value || 'administrador';
         const errorMessage = document.getElementById('errorMessage');
         const button = loginForm.querySelector('button[type="submit"]');
 
@@ -26,8 +27,9 @@ if (loginForm) {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            const role = String(data?.user?.role || '').toLowerCase();
-            window.location.href = (role === 'profissional' || role === 'tecnico')
+            localStorage.setItem('login_access_type', loginAccessType);
+            const selectedRole = String(loginAccessType || '').toLowerCase();
+            window.location.href = (selectedRole === 'profissional' || selectedRole === 'tecnico')
                 ? 'profissional-360.html'
                 : 'dashboard.html';
         } catch (error) {

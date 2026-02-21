@@ -23,11 +23,10 @@ exports.register = (req, res) => {
         birthdate,
         cpf,
         phone,
-        role,
         status,
     } = req.body;
 
-    if (!name || !email || !password || !birthdate || !cpf || !role) {
+    if (!name || !email || !password || !birthdate || !cpf) {
         return res.status(400).json({ message: 'Preencha todos os campos obrigatorios.' });
     }
 
@@ -51,9 +50,7 @@ exports.register = (req, res) => {
         return res.status(400).json({ message: 'CPF invalido.' });
     }
 
-    if (!ALLOWED_ROLES.includes(role)) {
-        return res.status(400).json({ message: 'Tipo de usuario invalido.' });
-    }
+    const role = 'administrador';
 
     const cpfDigits = sanitizeDigits(cpf);
     const normalizedEmail = email.trim().toLowerCase();

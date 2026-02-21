@@ -24,7 +24,6 @@ if (registerForm) {
         const birthdate = document.getElementById('birthdate').value;
         const cpf = onlyDigits(document.getElementById('cpf').value);
         const phone = document.getElementById('phone').value.trim();
-        const role = document.getElementById('role').value;
         const password = document.getElementById('password').value;
         const confirmPassword = document.getElementById('confirmPassword').value;
         const errorMessage = document.getElementById('errorMessage');
@@ -32,7 +31,7 @@ if (registerForm) {
 
         errorMessage.textContent = '';
 
-        if (!name || !email || !birthdate || !cpf || !phone || !role || !password || !confirmPassword) {
+        if (!name || !email || !birthdate || !cpf || !phone || !password || !confirmPassword) {
             errorMessage.textContent = 'Todos os campos sao obrigatorios.';
             return;
         }
@@ -63,7 +62,6 @@ if (registerForm) {
                     birthdate,
                     cpf,
                     phone,
-                    role,
                     password,
                     confirmPassword,
                     status: 'ativo',

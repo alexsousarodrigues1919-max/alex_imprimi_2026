@@ -106,7 +106,8 @@ function injectSidebar() {
     if (!layout) return;
 
     const page = (window.location.pathname.split('/').pop() || 'dashboard.html').replace('.html', '');
-    const role = String(getCurrentUser()?.role || '').toLowerCase();
+    const selectedRole = localStorage.getItem('login_access_type') || getCurrentUser()?.role || '';
+    const role = String(selectedRole).toLowerCase();
     const menu = getMenuByRole(role);
 
     const links = menu
