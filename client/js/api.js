@@ -103,6 +103,7 @@ async function apiFetch(endpoint, options = {}) {
 
     const headers = {
         'Content-Type': 'application/json',
+        Accept: 'application/json',
         ...options.headers,
     };
 
@@ -115,15 +116,37 @@ async function apiFetch(endpoint, options = {}) {
         });
 
         const contentType = response.headers.get('content-type') || '';
-        const data = contentType.includes('application/json')
-            ? await response.json()
-            : { message: 'Resposta invalida do servidor.' };
+        let data = null;
+        let rawText = '';
+
+        if (contentType.includes('application/json')) {
+            data = await response.json();
+        } else {
+            rawText = await response.text();
+            data = {};
+        }
 
         if (!response.ok) {
             if (response.status === 401) {
                 logout();
             }
-            throw new Error(data.message || 'Erro inesperado no servidor.');
+
+            const htmlResponse = contentType.includes('text/html') || /<html/i.test(rawText);
+            const responseHint = htmlResponse
+                ? 'Servidor retornou HTML em vez de JSON. Verifique API_URL/CORS/deploy.'
+                : (rawText ? rawText.slice(0, 180) : '');
+
+            throw new Error(
+                data.message
+                || responseHint
+                || `Erro ${response.status} ao acessar ${endpoint}.`
+            );
+        }
+
+        if (!contentType.includes('application/json')) {
+            throw new Error(
+                `Resposta invalida do servidor (${response.status}) em ${endpoint}. Esperado JSON.`
+            );
         }
 
         return data;
