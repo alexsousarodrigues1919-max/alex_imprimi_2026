@@ -49,6 +49,14 @@ app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, '../../client/index.html'));
 });
 
+app.use('/api', (req, res) => {
+    res.status(404).json({ message: 'Endpoint da API nao encontrado.' });
+});
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../../client/index.html'));
+});
+
 app.use((err, req, res, next) => {
     console.error(err);
     res.status(500).json({ message: 'Erro interno do servidor.' });
