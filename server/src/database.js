@@ -222,6 +222,17 @@ function initializeTables() {
             FOREIGN KEY(user_id) REFERENCES users(id)
         )`);
 
+        db.run(`CREATE TABLE IF NOT EXISTS digital_signatures (
+            id INTEGER PRIMARY KEY AUTOINCREMENT,
+            user_id INTEGER NOT NULL,
+            document_type TEXT NOT NULL,
+            reference TEXT,
+            signer_name TEXT,
+            signature_hash TEXT NOT NULL,
+            signed_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+            FOREIGN KEY(user_id) REFERENCES users(id)
+        )`);
+
         db.get(`SELECT COUNT(*) as count FROM company_config`, (err, row) => {
             if (!err && row && row.count === 0) {
                 db.run(`INSERT INTO company_config (name) VALUES ('Alex_ImpressÃ£o')`);
