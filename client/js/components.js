@@ -25,8 +25,8 @@ function showSplashScreen() {
     splash.className = 'splash-screen';
 
     splash.innerHTML = `
-        <img class="splash-logo" src="assets/logo-alex-impressao.svg" alt="Alex_Impressão">
-        <h2 class="splash-title">Alex_Impressão</h2>
+        <img class="splash-logo" src="assets/logo-alex-impressao.svg" alt="Alex_Impressao">
+        <h2 class="splash-title">Alex_Impressao</h2>
         <p class="splash-subtitle">Carregando plataforma...</p>
     `;
 
@@ -57,30 +57,57 @@ function ensureDashboardLayout() {
     document.body.insertBefore(layout, document.body.firstChild);
 }
 
-function injectSidebar() {
-    const layout = document.querySelector('.dashboard-layout');
-    if (!layout) return;
-
-    const page = (window.location.pathname.split('/').pop() || 'dashboard.html').replace('.html', '');
-
-    const menu = [
+function getMenuByRole(role) {
+    const fullMenu = [
         { href: 'dashboard.html', icon: 'layout-dashboard', label: 'Painel', key: 'dashboard' },
+        { href: 'profissional-360.html', icon: 'monitor-cog', label: 'Profissional 360', key: 'profissional-360' },
         { href: 'clients.html', icon: 'users', label: 'Clientes', key: 'clients' },
         { href: 'conta-cliente.html', icon: 'contact', label: 'Conta Cliente', key: 'conta-cliente' },
         { href: 'pdv.html', icon: 'shopping-cart', label: 'PDV', key: 'pdv' },
         { href: 'produtos.html', icon: 'package', label: 'Produtos', key: 'produtos' },
         { href: 'financial.html', icon: 'banknote', label: 'Financeiro', key: 'financial' },
         { href: 'agenda.html', icon: 'calendar-days', label: 'Agenda', key: 'agenda' },
-        { href: 'horarios.html', icon: 'clock-3', label: 'Marcar Horários', key: 'horarios' },
+        { href: 'horarios.html', icon: 'clock-3', label: 'Marcar Horarios', key: 'horarios' },
         { href: 'projects.html', icon: 'folder-kanban', label: 'Projetos', key: 'projects' },
         { href: 'planejamento.html', icon: 'list-checks', label: 'Planejamento', key: 'planejamento' },
         { href: 'services.html', icon: 'headset', label: 'Atendimento', key: 'services' },
         { href: 'professionals.html', icon: 'briefcase', label: 'Profissionais', key: 'professionals' },
-        { href: 'users.html', icon: 'user-cog', label: 'Usuários', key: 'users' },
-        { href: 'reports.html', icon: 'bar-chart-3', label: 'Relatórios', key: 'reports' },
-        { href: 'notifications.html', icon: 'bell', label: 'Notificações', key: 'notifications' },
-        { href: 'settings.html', icon: 'settings', label: 'Configurações', key: 'settings' },
+        { href: 'users.html', icon: 'user-cog', label: 'Usuarios', key: 'users' },
+        { href: 'reports.html', icon: 'bar-chart-3', label: 'Relatorios', key: 'reports' },
+        { href: 'notifications.html', icon: 'bell', label: 'Notificacoes', key: 'notifications' },
+        { href: 'settings.html', icon: 'settings', label: 'Configuracoes', key: 'settings' },
     ];
+
+    const professionalMenuKeys = [
+        'profissional-360',
+        'agenda',
+        'horarios',
+        'services',
+        'projects',
+        'notifications',
+        'settings',
+    ];
+
+    const viewOnlyMenuKeys = ['dashboard', 'reports', 'notifications', 'settings'];
+
+    if (role === 'profissional' || role === 'tecnico') {
+        return fullMenu.filter((item) => professionalMenuKeys.includes(item.key));
+    }
+
+    if (role === 'visualizacao') {
+        return fullMenu.filter((item) => viewOnlyMenuKeys.includes(item.key));
+    }
+
+    return fullMenu;
+}
+
+function injectSidebar() {
+    const layout = document.querySelector('.dashboard-layout');
+    if (!layout) return;
+
+    const page = (window.location.pathname.split('/').pop() || 'dashboard.html').replace('.html', '');
+    const role = String(getCurrentUser()?.role || '').toLowerCase();
+    const menu = getMenuByRole(role);
 
     const links = menu
         .map(
@@ -93,8 +120,8 @@ function injectSidebar() {
     sidebar.className = 'sidebar';
     sidebar.innerHTML = `
         <div class="brand">
-            <img class="brand-logo-image" src="assets/logo-alex-impressao.svg" alt="Alex_Impressão">
-            <span class="brand-name">Alex_Impressão</span>
+            <img class="brand-logo-image" src="assets/logo-alex-impressao.svg" alt="Alex_Impressao">
+            <span class="brand-name">Alex_Impressao</span>
         </div>
         <nav class="flex-1">
             <ul class="nav-list">${links}</ul>
@@ -124,4 +151,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (typeof lucide !== 'undefined') lucide.createIcons();
 });
-

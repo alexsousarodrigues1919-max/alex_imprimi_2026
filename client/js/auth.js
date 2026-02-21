@@ -26,7 +26,10 @@ if (loginForm) {
 
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
-            window.location.href = 'dashboard.html';
+            const role = String(data?.user?.role || '').toLowerCase();
+            window.location.href = (role === 'profissional' || role === 'tecnico')
+                ? 'profissional-360.html'
+                : 'dashboard.html';
         } catch (error) {
             errorMessage.textContent = error.message;
             showToast(error.message, 'error');
@@ -50,3 +53,4 @@ document.addEventListener('DOMContentLoaded', () => {
         if (typeof lucide !== 'undefined') lucide.createIcons();
     });
 });
+

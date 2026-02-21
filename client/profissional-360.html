@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profissional 360 - Alex_Impressao</title>
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        .p360-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+        .p360-actions { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: .75rem; margin-top: 1rem; }
+        .p360-alert { border-left: 4px solid #f59e0b; padding: .75rem; border-radius: .5rem; background: rgba(245,158,11,.1); }
+        .p360-item { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: .75rem 0; border-bottom: 1px solid var(--border); }
+        .p360-item:last-child { border-bottom: 0; }
+        .p360-badge { padding: .2rem .6rem; border-radius: 999px; font-size: .75rem; text-transform: uppercase; }
+        .p360-badge.ok { background: rgba(16,185,129,.2); color: #059669; }
+        .p360-badge.warn { background: rgba(245,158,11,.2); color: #d97706; }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div>
+            <h1 class="page-title">Plataforma Profissional 360</h1>
+            <p class="page-subtitle" id="p360Welcome">Carregando dados do profissional...</p>
+        </div>
+        <button class="btn btn-primary" id="refreshP360Btn"><i data-lucide="refresh-cw"></i> Atualizar</button>
+    </header>
+
+    <section class="p360-grid">
+        <article class="glass-card">
+            <div class="text-muted">Reunioes</div>
+            <div class="stats-value" id="p360Meetings">0</div>
+        </article>
+        <article class="glass-card">
+            <div class="text-muted">Atendimentos Pendentes</div>
+            <div class="stats-value" id="p360PendingServices">0</div>
+        </article>
+        <article class="glass-card">
+            <div class="text-muted">Projetos Ativos</div>
+            <div class="stats-value" id="p360Projects">0</div>
+        </article>
+        <article class="glass-card">
+            <div class="text-muted">Receita do Mes</div>
+            <div class="stats-value" id="p360Revenue">R$ 0,00</div>
+            <small class="text-muted" id="p360Commission">Comissao estimada: R$ 0,00</small>
+        </article>
+    </section>
+
+    <section class="dashboard-panels mt-3">
+        <article class="glass-card">
+            <h3 class="mb-2">Alertas Operacionais</h3>
+            <div id="p360Alerts"></div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-2">Proximas Reunioes</h3>
+            <div id="p360MeetingsList"></div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-2">Ultimos Atendimentos</h3>
+            <div id="p360ServicesList"></div>
+        </article>
+
+        <article class="glass-card">
+            <h3 class="mb-2">Acoes Rapidas</h3>
+            <div class="p360-actions">
+                <a class="btn btn-outline" href="agenda.html"><i data-lucide="calendar-days"></i> Agenda</a>
+                <a class="btn btn-outline" href="horarios.html"><i data-lucide="clock-3"></i> Horarios</a>
+                <a class="btn btn-outline" href="services.html"><i data-lucide="headset"></i> Atendimento</a>
+                <a class="btn btn-outline" href="projects.html"><i data-lucide="folder-kanban"></i> Projetos</a>
+                <button class="btn btn-outline" type="button" data-doc="orcamento"><i data-lucide="file-text"></i> Orcamento PDF</button>
+                <button class="btn btn-outline" type="button" data-doc="recibo"><i data-lucide="receipt"></i> Recibo</button>
+            </div>
+            <small class="text-muted">Documentos em modo inicial, prontos para integracao de PDF.</small>
+        </article>
+    </section>
+
+    <script src="js/api.js"></script>
+    <script src="js/components.js"></script>
+    <script src="js/profissional-360.js"></script>
+</body>
+</html>

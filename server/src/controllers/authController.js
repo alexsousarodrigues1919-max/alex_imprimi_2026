@@ -5,7 +5,7 @@ const { logActivity } = require('../utils/logger');
 const { sanitizeDigits, isValidEmail, isAdult, isValidCPF } = require('../utils/validation');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'secret_key_123';
-const ALLOWED_ROLES = ['administrador', 'profissional', 'atendimento', 'financeiro'];
+const ALLOWED_ROLES = ['administrador', 'profissional', 'atendimento', 'financeiro', 'tecnico', 'visualizacao'];
 
 function signToken(user) {
     return jwt.sign({ id: user.id, role: user.role }, JWT_SECRET, { expiresIn: '24h' });
@@ -174,4 +174,5 @@ exports.listUsers = (req, res) => {
         }
     );
 };
+
 
