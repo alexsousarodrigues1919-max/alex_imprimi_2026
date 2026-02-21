@@ -682,6 +682,76 @@ button {
     overflow: hidden;
 }
 
+.auth-wallpaper-page {
+    background:
+        linear-gradient(120deg, rgba(2, 6, 23, 0.78), rgba(15, 23, 42, 0.58)),
+        url('../assets/login-wallpaper.jpg') center/cover no-repeat fixed;
+}
+
+.auth-pro-bg {
+    background:
+        radial-gradient(circle at 12% 20%, rgba(14, 165, 233, 0.32), transparent 34%),
+        radial-gradient(circle at 82% 78%, rgba(37, 99, 235, 0.34), transparent 36%),
+        linear-gradient(135deg, #0b1220 0%, #0f172a 45%, #111827 100%);
+    position: relative;
+}
+
+.auth-pro-bg::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(148, 163, 184, 0.14) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(148, 163, 184, 0.14) 1px, transparent 1px);
+    background-size: 44px 44px;
+    mask-image: radial-gradient(circle at center, black 30%, transparent 92%);
+    opacity: 0.35;
+    animation: proGridMove 18s linear infinite;
+    z-index: 0;
+}
+
+.auth-pro-bg::after {
+    content: '';
+    position: fixed;
+    inset: -15%;
+    pointer-events: none;
+    background:
+        conic-gradient(from 0deg, rgba(59, 130, 246, 0.18), rgba(16, 185, 129, 0.12), rgba(59, 130, 246, 0.18));
+    filter: blur(38px);
+    animation: proAuraSpin 16s linear infinite;
+    z-index: 0;
+}
+
+.auth-wallpaper-page::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(59, 130, 246, 0.28), transparent 32%),
+        radial-gradient(circle at 85% 80%, rgba(16, 185, 129, 0.25), transparent 30%),
+        radial-gradient(circle at 60% 30%, rgba(139, 92, 246, 0.22), transparent 26%);
+    mix-blend-mode: screen;
+    animation: wallpaperPulse 8s ease-in-out infinite alternate;
+    z-index: 0;
+}
+
+.auth-wallpaper-page::after {
+    content: '';
+    position: fixed;
+    inset: -20%;
+    pointer-events: none;
+    background-image:
+        radial-gradient(rgba(255, 255, 255, 0.16) 1px, transparent 1px),
+        radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+    background-size: 38px 38px, 62px 62px;
+    background-position: 0 0, 19px 19px;
+    animation: wallpaperDrift 18s linear infinite;
+    z-index: 0;
+    opacity: 0.4;
+}
+
 .auth-container::before {
     content: '';
     position: absolute;
@@ -703,6 +773,48 @@ button {
 .auth-header {
     text-align: center;
     margin-bottom: 2rem;
+}
+
+@keyframes wallpaperPulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: scale(1.06);
+        opacity: 1;
+    }
+}
+
+@keyframes wallpaperDrift {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(40px, -30px, 0);
+    }
+}
+
+@keyframes proGridMove {
+    0% {
+        transform: translate3d(0, 0, 0);
+    }
+
+    100% {
+        transform: translate3d(44px, -44px, 0);
+    }
+}
+
+@keyframes proAuraSpin {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+
+    100% {
+        transform: rotate(360deg) scale(1.05);
+    }
 }
 
 /* =======================================================================
